@@ -1,0 +1,21 @@
+@import "material-icons/iconfont/material-icons.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.custom-scroll::-webkit-scrollbar {
+    display: none;
+}
+.custom-scroll {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.bg-\[\#4b3621\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(235 235 235 / var(--tw-bg-opacity, 1));
+    color: #4b3621;
+    background-color: #e3e1db;
+}
+.bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(227 225 219 / var(--tw-bg-opacity, 1));
+}
