@@ -18,7 +18,7 @@
 
         <li>
             <button
-                class="flex items-center w-full gap-2 p-3 toggle nav-item rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
+                class="flex items-center w-full gap-2 p-3 toggle rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
                 <span
                     class="text-2xl text-gray-400 transition duration-75 material-icons dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white">
                     build
@@ -32,7 +32,7 @@
             <ul class="py-1 space-y-1 dropdown">
                 <a href="{{ route('admin.admin.orders.index') }}" class="w-full">
                     <li
-                        class="flex items-center w-full gap-2 p-1 nav-item rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
+                        class="flex items-center w-full gap-2 p-1 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
                         <span
                             class="text-2xl text-gray-400 transition duration-75 material-icons dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white">
                             receipt_long</span>
@@ -40,64 +40,52 @@
 
                     </li>
                 </a>
-            </ul>
+      
 
-            <ul class="py-1 space-y-1 dropdown">
+    
                 <a href="{{ route('admin.admin.products.index') }}" class="w-full">
                     <li
-                        class="flex items-center w-full gap-2 p-1 nav-item rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
+                        class="flex items-center w-full gap-2 p-1 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
                         <span
                             class="text-2xl text-gray-400 transition duration-75 material-icons dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white">
                             shopping_bag</span>
                         <span class="flex-1 ml-3 text-left whitespace-nowrap">Products </span>
                     </li>
                 </a>
-            </ul>
-            <ul class="py-1 space-y-1 dropdown">
+            
                 <a href="{{ route('admin.admin.categories.index') }}" class="w-full">
                     <li
-                        class="flex items-center w-full gap-2 p-1 nav-item rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
+                        class="flex items-center w-full gap-2 p-1 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
                         <span
                             class="text-2xl text-gray-400 transition duration-75 material-icons dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white">
                             category</span>
                         <span class="flex-1 ml-3 text-left whitespace-nowrap">Categories </span>
                     </li>
                 </a>
-            </ul>
-        </li>
-
-
-
-
-
-
-        <ul class="py-1 space-y-1 dropdown">
+         
             <a href="{{ route('admin.admin.coupons.index') }}" class="w-full">
                 <li
-                    class="flex items-center w-full gap-2 p-1 nav-item rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
+                    class="flex items-center w-full gap-2 p-1 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
                     <span
                         class="text-2xl text-gray-400 transition duration-75 material-icons dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white">
                         redeem </span>
                     <span class="flex-1 ml-3 text-left whitespace-nowrap">Coupons Setup </span>
                 </li>
             </a>
-        </ul>
-
-        <ul class="py-1 space-y-1 dropdown">
+      
             <a href="{{ route('admin.admin.shippingOptions.index') }}" class="w-full">
                 <li
-                    class="flex items-center w-full gap-2 p-1 nav-item rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
+                    class="flex items-center w-full gap-2 p-1 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
                     <span
                         class="text-2xl text-gray-400 transition duration-75 material-icons dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white">
                         local_shipping </span>
                     <span class="flex-1 ml-3 text-left whitespace-nowrap">Shipping Options</span>
                 </li>
             </a>
-        </ul>
-        <ul class="py-1 space-y-1 dropdown">
+       
             <a href="" class="w-full">
                 <li
-                    class="flex items-center w-full gap-2 p-1 nav-item rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
+                    class="flex items-center w-full gap-2 p-1 rounded-xl hover:bg-gray-300 dark:hover:bg-gray-500 group">
                     <span
                         class="text-2xl text-gray-400 transition duration-75 material-icons dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-white">
                         people</span>

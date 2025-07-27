@@ -13,10 +13,11 @@
 
             <div>
                 <h1 class="mb-4 text-3xl font-bold text-gray-800">{{ $product->name }}</h1>
-                <p class="mb-6 text-lg text-gray-600">{{ $product->description }}</p>
+                <textarea name="description" rows="4" class="w-full mt-1 p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white" style="height: auto">{{ $product->description }}</textarea>
+                
 
                 <div class="mb-6 text-2xl font-semibold text-blue-600">
-                    ${{ number_format($product->price, 2) }}
+                    AED {{ number_format($product->price, 2) }}
                 </div>
 
                 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex items-center space-x-4">

@@ -47,3 +47,20 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("file-name").textContent = fileName;
         });
 });
+
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target); // optional: remove once shown
+    }
+  });
+}, {
+  threshold: 0.1, // Only trigger when 10% of the element is visible
+  rootMargin: '0px 0px -50px 0px' // Helps delay trigger until it's more visible
+});
+
+  document.querySelectorAll('[class*="fade-"]').forEach(el => {
+    observer.observe(el);
+  });

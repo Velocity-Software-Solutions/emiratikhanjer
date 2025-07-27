@@ -21,6 +21,7 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -32,6 +33,7 @@ class CategoryController extends Controller
 
         Category::create([
             'name' => $request->name,
+            'slug' => $request->slug,
         ]);
 
         return redirect()->back()->with('success', 'Category added successfully.');
@@ -40,9 +42,11 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $fieldName = 'name_' . $id;
+        $fieldSlug = 'slug_' . $id;
 
         $validator = Validator::make($request->all(), [
             $fieldName => 'required|string|max:255',
+            $fieldSlug => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -51,11 +55,11 @@ class CategoryController extends Controller
                 ->withInput()
                 ->with('category_id', $id);
         }
-
+        
         $category = Category::findOrFail($id);
         $category->name = $request->input($fieldName);
+        $category->slug = $request->input($fieldSlug);
         $category->save();
-
         return redirect()->back()->with('success', 'Category updated successfully.');
     }
 

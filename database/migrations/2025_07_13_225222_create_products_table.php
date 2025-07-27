@@ -21,10 +21,11 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price');
             $table->decimal('discount_price')->nullable();
-            $table->integer('quantity');
+            $table->integer('stock_quantity');
             $table->string('condition')->default('antique');
             $table->boolean('status');
             $table->foreignId('category_id')->constrained()->on('categories')->onDelete('cascade');
+            $table->timestamps();
 
         });
 

@@ -63,7 +63,7 @@
                                 <p class="font-medium">{{ $item['name'] }}</p>
                                 <p class="text-sm text-gray-500">Qty: {{ $item['quantity'] }}</p>
                             </div>
-                            <div>${{ number_format($item['price'] * $item['quantity'], 2) }}</div>
+                            <div>AED {{ number_format($item['price'] * $item['quantity'], 2) }}</div>
                         </li>
                     @endforeach
                 </ul>
@@ -148,13 +148,13 @@
 
             {{-- Order Summary --}}
             <div class="p-4 mt-4 bg-gray-100 border rounded">
-                <p class="mb-2">Subtotal: ${{ number_format($subtotal, 2) }}</p>
+                <p class="mb-2">Subtotal: AED {{ number_format($subtotal, 2) }}</p>
                 @if ($coupon)
-                    <p class="mb-2 text-green-600">Coupon Discount: -${{ number_format($discount, 2) }}</p>
+                    <p class="mb-2 text-green-600">Coupon Discount: -AED {{ number_format($discount, 2) }}</p>
                 @endif
                 <p class="mb-2">Shipping: <span x-text="'$' + shippingCost.toFixed(2)"></span></p>
                 <p class="font-bold">Total:
-                    <span x-text="'$' + ({{ $subtotal - $discount }} + shippingCost).toFixed(2)"></span>
+                    <span x-text="'AED ' + ({{ $subtotal - $discount }} + shippingCost).toFixed(2)"></span>
                 </p>
             </div>
 

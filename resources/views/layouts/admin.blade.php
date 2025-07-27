@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Antique Shop')</title>
-    <link rel="icon" type="image/x-icon" href="/images/logo2.png">
+    <link rel="icon" type="image/x-icon" href="/images/logo.ico">
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))

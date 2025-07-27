@@ -13,7 +13,7 @@
             <p><strong>Shipping:</strong> {{ $order->shipping_address }}</p>
             <p><strong>Billing:</strong> {{ $order->billing_address }}</p>
             <p><strong>Shipping Method:</strong> {{ $order->shippingOption->name ?? 'N/A' }}</p>
-            <p><strong>Total Paid:</strong> ${{ number_format($order->total_amount, 2) }}</p>
+            <p><strong>Total Paid:</strong> AED {{ number_format($order->total_amount, 2) }}</p>
         </div>
 
         <form action="{{ route('checkout.receipt', $order->id) }}" method="GET" target="_blank">

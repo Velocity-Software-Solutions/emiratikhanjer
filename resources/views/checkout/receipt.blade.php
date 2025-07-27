@@ -42,8 +42,8 @@
                 <tr>
                     <td>{{ $item->product->name ?? 'Deleted Item' }}</td>
                     <td>{{ $item->quantity }}</td>
-                    <td>${{ number_format($item->price, 2) }}</td>
-                    <td>${{ number_format($item->subtotal, 2) }}</td>
+                    <td>AED {{ number_format($item->price, 2) }}</td>
+                    <td>AED {{ number_format($item->subtotal, 2) }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -8,7 +8,11 @@ class StoreController extends Controller
 {
    public function home()
 {
-    $products = Product::with('images')->latest()->take(6)->get();
+
+    $products = Product::with(['images', 'category'])
+    ->latest()
+    ->get()
+    ->groupBy(fn($p) => $p->category->name ?? 'Uncategorized');
 
     return view('home', compact('products'));
 }

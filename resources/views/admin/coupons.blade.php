@@ -3,7 +3,7 @@
 @section('title', 'Manage Coupons')
 
 @section('content')
-    <div class="max-w-6xl p-6 mx-2 space-y-6 bg-white rounded-md shadow-md w-9/10 dark:bg-gray-800" x-data="{ showNewRow: false }">
+    <div class="max-w-6xl p-6 mx-2 h-full space-y-6 bg-white rounded-md shadow-md w-9/10 dark:bg-gray-800" x-data="{ showNewRow: false }">
 
         {{-- Header --}}
         <div class="flex items-center justify-between">
@@ -22,18 +22,18 @@
 
         {{-- Table --}}
         <div class="overflow-x-auto border border-gray-200 rounded-md dark:border-gray-700">
-            <table class="text-sm table-auto min-">
+            <table class="min-w-full table-auto border-collapse rounded overflow-hidden shadow-sm bg-white dark:bg-gray-900">
                 <thead class="text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-white">
                     <tr>
-                        <th class="px-4 py-2 text-left">#</th>
-                        <th class="px-4 py-2 text-left">Code</th>
-                        <th class="px-4 py-2 text-left">Type</th>
-                        <th class="px-4 py-2 text-left">Value</th>
-                        <th class="px-4 py-2 text-left">Min Order</th>
-                        <th class="px-4 py-2 text-left">Limit</th>
-                        <th class="px-4 py-2 text-left">Expires</th>
-                        <th class="px-4 py-2 text-left">Status</th>
-                        <th class="px-4 py-2 text-center">Actions</th>
+                        <th class="px-4 py-2">#</th>
+                        <th class="px-4 py-2">Code</th>
+                        <th class="px-4 py-2">Type</th>
+                        <th class="px-4 py-2">Value</th>
+                        <th class="px-4 py-2">Min Order</th>
+                        <th class="px-4 py-2">Limit</th>
+                        <th class="px-4 py-2">Expires</th>
+                        <th class="px-4 py-2">Status</th>
+                        <th class="px-4 py-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">

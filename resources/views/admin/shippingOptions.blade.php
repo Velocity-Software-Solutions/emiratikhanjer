@@ -3,7 +3,7 @@
 @section('title', 'Manage Shipping Options')
 
 @section('content')
-    <div class="max-w-6xl p-6 mx-auto space-y-6 bg-white rounded-md shadow-md dark:bg-gray-800" x-data="{ showNewRow: false }">
+    <div class="max-w-6xl p-6 mx-2 h-full space-y-6 bg-white rounded-md shadow-md dark:bg-gray-800" x-data="{ showNewRow: false }">
 
         {{-- Header --}}
         <div class="flex items-center justify-between">
