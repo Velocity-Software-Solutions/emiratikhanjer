@@ -4,13 +4,21 @@
             @auth
                 @if (auth()->user()->hasVerifiedEmail())
                     <div class="flex gap-4">
-                       <a href="{{ route('admin.admin.orders.index') }}" class="w-full">
+                       <a href="{{ route('admin.orders.index') }}" class="w-full">
                             <span
-                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-icons dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
+                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-symbols-outlined dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
                                 receipt_long</span>
-                        <span class="flex-1 ml-3 text-left whitespace-nowrap">Orders</span>
                         </a>
-
+                       <a href="{{ route('admin.products.index') }}" class="w-full">
+                            <span
+                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-symbols-outlined dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
+                                shopping_bag</span>
+                        </a>
+                                               <a href="{{ route('admin.categories.index') }}" class="w-full">
+                            <span
+                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-symbols-outlined dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
+                                category</span>
+                        </a>
                     </div>
                     <a href="{{ route(auth()->user()->type == 1 ? 'admin.dashboard' : 'employer.dashboard') }}"
                         class="inline-block px-5 py-1.5 text-black dark:text-white border border-black hover:border-gray-700 dark:border-gray-400 dark:hover:border-white hover:bg-gray-400 transition duration-200 rounded-sm text-sm leading-normal">

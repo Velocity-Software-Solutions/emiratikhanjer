@@ -20,7 +20,7 @@
             </a>
 
             <!-- Order List Button -->
-            <a href="{{ route('admin.admin.orders.index') }}"
+            <a href="{{ route('admin.orders.index') }}"
                 class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md transition hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -131,9 +131,9 @@
         </div>
 
         <div class="flex justify-end space-x-2">
-            <a href="{{ route('admin.admin.orders.edit', $order) }}"
+            <a href="{{ route('admin.orders.edit', $order) }}"
                 class="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700">Edit</a>
-            <form action="{{ route('admin.admin.orders.destroy', $order) }}" method="POST"
+            <form action="{{ route('admin.orders.destroy', $order) }}" method="POST"
                 onsubmit="return confirm('Delete this order?');">
                 @csrf
                 @method('DELETE')

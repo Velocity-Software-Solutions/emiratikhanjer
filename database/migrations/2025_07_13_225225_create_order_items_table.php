@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price');
             $table->decimal('subtotal');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

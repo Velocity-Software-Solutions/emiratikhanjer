@@ -39,7 +39,7 @@
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                     {{-- Add Row --}}
                     <tr x-show="showNewRow" class="bg-gray-50 dark:bg-gray-900">
-                        <form action="{{ route('admin.admin.coupons.store') }}" method="POST" class="flex items-center ">
+                        <form action="{{ route('admin.coupons.store') }}" method="POST" class="flex items-center ">
                             @csrf
                             <td class="px-4 py-2">New</td>
                             <td class="px-4 py-2"><input name="code" class="w-24 text-sm rounded-md form-input " /></td>
@@ -80,7 +80,7 @@
                     {{-- Existing Coupons --}}
                     @foreach ($coupons as $coupon)
                         <tr>
-                            <form action="{{ route('admin.admin.coupons.update', $coupon->id) }}" method="POST"
+                            <form action="{{ route('admin.coupons.update', $coupon->id) }}" method="POST"
                                 class="flex items-center ">
                                 @csrf
                                 @method('PUT')
@@ -121,7 +121,7 @@
                                         </svg>
                                     </button>
                             </form>
-                            <form action="{{ route('admin.admin.coupons.destroy', $coupon->id) }}" method="POST"
+                            <form action="{{ route('admin.coupons.destroy', $coupon->id) }}" method="POST"
                                 onsubmit="return confirm('Are you sure?');">
                                 @csrf
                                 @method('DELETE')

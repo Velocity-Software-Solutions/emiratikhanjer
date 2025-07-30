@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,15 +13,15 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('shipping_options', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
-                $table->decimal('price', 8, 2);
-                $table->string('delivery_time');
-                $table->text('description')->nullable();
-                $table->string('region');
-                 $table->string('country')->nullable()->index();
-    $table->string('city')->nullable()->index();
-                $table->timestamps();
+            $table->id();
+            $table->string('name');
+            $table->decimal('price', 8, 2);
+            $table->string('delivery_time');
+            $table->text('description')->nullable();
+            $table->string('region');
+            $table->string('country')->nullable()->index();
+            $table->string('city')->nullable()->index();
+            $table->timestamps();
         });
     }
 

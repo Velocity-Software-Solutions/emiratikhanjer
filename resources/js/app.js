@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".toggle").forEach((button) => {
         button.addEventListener("click", function () {
-            const icon = this.querySelector("span.material-icons:last-of-type");
+            const icon = this.querySelector("span.material-symbols-outlined:last-of-type");
             icon.classList.toggle("-rotate-90");
             const dropdown = this.nextElementSibling;
             dropdown.classList.toggle("hidden");

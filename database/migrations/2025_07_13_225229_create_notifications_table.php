@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('status')->default('pending');
             $table->dateTime('sent_at');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

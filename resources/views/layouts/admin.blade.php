@@ -12,12 +12,13 @@
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
     {{-- Shared JS or per-page head content --}}
     @stack('head')
 </head>
 
-<body class="bg-[#4b3621] dark:bg-gray-900 w-full h-[100vh]" x-data="{ sidebarOpen: true }">
+<body class="bg-gray-100 dark:bg-gray-900 w-full h-[100vh]" x-data="{ sidebarOpen: true }">
     {{-- Shared Header --}}
     <div class="flex h-[100%]">
         @include('partials.admin-sidebar')

@@ -3,7 +3,7 @@
 @section('title', 'Manage Shipping Options')
 
 @section('content')
-    <div class="max-w-6xl p-6 mx-2 h-full space-y-6 bg-white rounded-md shadow-md dark:bg-gray-800" x-data="{ showNewRow: false }">
+    <div class="p-6 mx-2 h-full space-y-6 bg-white rounded-md shadow-md dark:bg-gray-800" x-data="{ showNewRow: false }">
 
         {{-- Header --}}
         <div class="flex items-center justify-between">
@@ -38,54 +38,37 @@
                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
 
                     {{-- Add Row --}}
-                    <tr x-show="showNewRow" x-data="{
-                        country: '',
-                        city: '',
-                        countries: {
-                            'UAE': ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Umm Al Quwain', 'Ras Al Khaimah', 'Fujairah'],
-                            'Saudi Arabia': ['Riyadh', 'Jeddah', 'Mecca', 'Medina', 'Dammam', 'Khobar', 'Dhahran', 'Tabuk', 'Abha', 'Hail'],
-                            'Kuwait': ['Kuwait City', 'Salmiya', 'Hawally', 'Farwaniya', 'Jahra', 'Fahaheel', 'Mangaf', 'Sabah Al Salem', 'Mahboula', 'Abu Halifa'],
-                            'Qatar': ['Doha', 'Al Rayyan', 'Umm Salal', 'Al Wakrah', 'Al Khor', 'Al Daayen', 'Al Shamal', 'Al Shahaniya'],
-                            'Oman': ['Muscat', 'Salalah', 'Sohar', 'Nizwa', 'Sur', 'Ibri', 'Barka', 'Rustaq'],
-                            'Bahrain': ['Manama', 'Muharraq', 'Riffa', 'Isa Town', 'Sitra', 'Budaiya', 'Hamad Town', 'A\'ali']
-
-                        }
-                    }" class="bg-gray-50 dark:bg-gray-900">
-                        <form action="{{ route('admin.admin.shippingOptions.store') }}" method="POST"
+                    <tr x-show="showNewRow" x-data="countries" class="bg-gray-50 dark:bg-gray-900">
+                        <form action="{{ route('admin.shippingOptions.store') }}" method="POST"
                             class="flex items-center w-full">
                             @csrf
                             <td class="px-4 py-2">New</td>
-                            <td class="px-4 py-2"><input name="name" class="text-sm rounded-md form-input w-44" /></td>
+                            <td class="px-4 py-2"><input name="name" class="text-sm rounded-md form-input w-20" /></td>
                             <td class="px-4 py-2"><input name="price" type="number" step="0.01"
                                     class="w-24 text-sm rounded-md form-input" /></td>
                             <td class="px-4 py-2"><input name="delivery_time" class="w-24 text-sm rounded-md form-input" />
                             </td>
                             <td class="px-4 py-2"><input name="description" class="text-sm rounded-md form-input w-44" />
                             </td>
+
+                            {{-- Country Select --}}
                             <td class="px-4 py-2">
-                                <select name="country" x-model="country" class="w-32 text-sm rounded-md form-select">
+                                <select name="country" x-model="country"
+                                    @change="$dispatch('cities-updated', { options: updateCities() })"
+                                    class="w-32 text-sm rounded-md form-select">
                                     <option value="">Select Country</option>
-                                    <template x-for="(cities, name) in countries" :key="name">
+                                    <template x-for="(cities, name) in allCountries" :key="name">
                                         <option :value="name" x-text="name"></option>
                                     </template>
                                 </select>
                             </td>
-                            <td class="px-4 py-2" x-data="{ cities: [] }">
-                                <div class="w-48 p-2 overflow-y-auto bg-white border rounded shadow max-h-40"
-                                    x-show="country">
-                                    <template x-for="c in countries[country] || []" :key="c">
-                                        <label class="flex items-center space-x-2 text-sm text-gray-700">
-                                            <input type="checkbox" :value="c" x-model="cities"
-                                                class="text-blue-600 border-gray-300 rounded">
-                                            <span x-text="c"></span>
-                                        </label>
-                                    </template>
 
-                                    <!-- Hidden inputs for form submission -->
-                                    <template x-for="c in cities" :key="'add-' + c">
-                                        <input type="hidden" name="cities[]" :value="c">
-                                    </template>
-                                </div>
+                            {{-- Cities Multi Select --}}
+                            <td class="px-4 py-2 min-w-28">
+                                <template x-if="country">
+                                    <x-multi-select name="cities" x-bind:options="citiesOptions"
+                                        :old-values="old('cities' ?? [])" />
+                                </template>
                             </td>
 
                             <td class="px-4 py-2 text-center">
@@ -102,6 +85,7 @@
                         </form>
                     </tr>
 
+
                     {{-- Existing Shipping Options --}}
                     @foreach ($shippingOptions as $option)
                         <tr x-data="{
@@ -114,10 +98,10 @@
                                 'Qatar': ['Doha', 'Al Rayyan', 'Umm Salal', 'Al Wakrah', 'Al Khor', 'Al Daayen', 'Al Shamal', 'Al Shahaniya'],
                                 'Oman': ['Muscat', 'Salalah', 'Sohar', 'Nizwa', 'Sur', 'Ibri', 'Barka', 'Rustaq'],
                                 'Bahrain': ['Manama', 'Muharraq', 'Riffa', 'Isa Town', 'Sitra', 'Budaiya', 'Hamad Town', 'A\'ali']
-
+                        
                             }
                         }">
-                            <form action="{{ route('admin.admin.shippingOptions.update', $option->id) }}" method="POST"
+                            <form action="{{ route('admin.shippingOptions.update', $option->id) }}" method="POST"
                                 class="flex items-center w-full">
                                 @csrf
                                 @method('PUT')
@@ -168,7 +152,7 @@
                                         </svg>
                                     </button>
                             </form>
-                            <form action="{{ route('admin.admin.shippingOptions.destroy', $option->id) }}" method="POST"
+                            <form action="{{ route('admin.shippingOptions.destroy', $option->id) }}" method="POST"
                                 onsubmit="return confirm('Are you sure?');">
                                 @csrf
                                 @method('DELETE')
@@ -194,4 +178,87 @@
             {{ $shippingOptions->links('pagination::tailwind') }}
         </div>
     </div>
+    <script>
+        function multiSelect(options, fieldName, initial) {
+            return {
+                open: false,
+                query: '',
+                selected: [],
+                filtered: [],
+                allOptions: options,
+                name: fieldName,
+
+                init() {
+                    console.log(this.allOptions)
+                    this.selected = Array.from(new Set(initial.map(id => String(id))));
+                    this.filtered = this.allOptions;
+
+                },
+
+                toggle(id) {
+                    id = String(id);
+                    if (this.selected.includes(id)) {
+                        this.selected = this.selected.filter(i => i !== id);
+                    } else {
+                        this.selected.push(id);
+                    }
+                    console.log(this.selected);
+
+                },
+
+                remove(id) {
+                    this.selected = this.selected.filter(i => i !== String(id));
+
+                },
+
+                filter() {
+                    const q = this.query.toLowerCase().trim();
+                    this.filtered = q ?
+                        this.allOptions.filter(opt => opt.name.toLowerCase().includes(q)) :
+                        this.allOptions;
+                },
+
+                getNameById(id) {
+                    id = String(id);
+                    const item = this.allOptions.find(opt => String(opt.id) === id);
+                    return item ? item.name : '';
+                },
+                updateOptions(newOptions) {
+                    this.allOptions = newOptions;
+                    this.selected = this.selected.filter(id => this.allOptions.some(opt => opt.id === id));
+                    this.filter();
+                }
+
+
+            };
+        }
+
+        function countries() {
+            return {
+                country: '',
+                citiesOptions: [],
+                allCountries: {
+                    'UAE': ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Umm Al Quwain', 'Ras Al Khaimah', 'Fujairah'],
+                    'Saudi Arabia': ['Riyadh', 'Jeddah', 'Mecca', 'Medina', 'Dammam', 'Khobar', 'Dhahran', 'Tabuk', 'Abha',
+                        'Hail'
+                    ],
+                    'Kuwait': ['Kuwait City', 'Salmiya', 'Hawally', 'Farwaniya', 'Jahra', 'Fahaheel', 'Mangaf',
+                        'Sabah Al Salem', 'Mahboula', 'Abu Halifa'
+                    ],
+                    'Qatar': ['Doha', 'Al Rayyan', 'Umm Salal', 'Al Wakrah', 'Al Khor', 'Al Daayen', 'Al Shamal',
+                        'Al Shahaniya'
+                    ],
+                    'Oman': ['Muscat', 'Salalah', 'Sohar', 'Nizwa', 'Sur', 'Ibri', 'Barka', 'Rustaq'],
+                    'Bahrain': ['Manama', 'Muharraq', 'Riffa', 'Isa Town', 'Sitra', 'Budaiya', 'Hamad Town', 'A\'ali']
+                },
+                updateCities() {
+                    return (this.allCountries[this.country] || []).map((obj, index) => ({
+                        id: obj,
+                        name: obj
+                    }));
+                    console.log('Updated cities:', this.citiesOptions);
+                }
+            }
+        }
+    </script>
 @endsection

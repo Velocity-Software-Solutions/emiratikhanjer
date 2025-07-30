@@ -8,7 +8,7 @@
 
         <div class="flex items-center justify-between mb-5">
             <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Orders</h2>
-            <a href="{{ route('admin.admin.orders.create') }}"
+            <a href="{{ route('admin.orders.create') }}"
                 class="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">+ New Order</a>
         </div>
 
@@ -41,11 +41,11 @@
                             <td class="p-3 capitalize">{{ $order->payment_status }}</td>
                             <td class="p-3">{{ $order->created_at->format('Y-m-d') }}</td>
                             <td class="p-3 space-x-2 text-center">
-                                <a href="{{ route('admin.admin.orders.show', $order) }}"
+                                <a href="{{ route('admin.orders.show', $order) }}"
                                     class="text-blue-600 hover:underline">View</a>
-                                <a href="{{ route('admin.admin.orders.edit', $order) }}"
+                                <a href="{{ route('admin.orders.edit', $order) }}"
                                     class="text-green-600 hover:underline">Edit</a>
-                                <form action="{{ route('admin.admin.orders.destroy', $order) }}" method="POST"
+                                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST"
                                     class="inline" onsubmit="return confirm('Delete this order?');">
                                     @csrf
                                     @method('DELETE')

@@ -14,7 +14,7 @@ class ShippingOptionController extends Controller
     public function index()
     {
         $shippingOptions = ShippingOptions::latest()->paginate(10);
-        return view('admin.shippingOptions', compact('shippingOptions'));
+        return view('admin.shipping-options', compact('shippingOptions'));
     }
 
     /**
@@ -28,8 +28,8 @@ class ShippingOptionController extends Controller
             'delivery_time' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'country' => 'required|string|max:100',
-            'cities' => 'required|array|min:1',
-        'cities.*' => 'required|string|max:2000',
+            'cities' => 'nullable|array|min:1',
+        'cities.*' => 'nullable|string|max:2000',
         ]);
 
         ShippingOptions::create($validated);

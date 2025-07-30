@@ -3,10 +3,10 @@
 @section('title', 'Add Product')
 
 @section('content')
-<div class="max-w-4xl w-3/4 mx-auto bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+<div class="mx-2 bg-white dark:bg-gray-800 p-6 shadow-md rounded-tl-md rounded-tr-md overflow-scroll custom-scrollbar scrollbar-hide">
   <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-6">➕ Add New Product</h2>
 
-  <form action="{{ route('admin.admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+  <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
     @csrf
 
     <!-- Product Name -->

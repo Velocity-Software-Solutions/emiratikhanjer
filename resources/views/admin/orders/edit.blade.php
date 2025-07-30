@@ -22,7 +22,7 @@
             </a>
 
             <!-- Order List Button -->
-            <a href="{{ route('admin.admin.orders.index') }}"
+            <a href="{{ route('admin.orders.index') }}"
                 class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md transition hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +44,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.admin.orders.update', $order) }}" method="POST" class="space-y-6">
+        <form action="{{ route('admin.orders.update', $order) }}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')
 
@@ -128,7 +128,7 @@
                                             {{-- Show product name with a link --}}
                                             <div class="flex flex-col">
                                                 @if ($item->product)
-                                                    <a href="{{ route('admin.admin.products.edit', $item->product->id) }}"
+                                                    <a href="{{ route('admin.products.edit', $item->product->id) }}"
                                                         target="_blank" class="font-semibold text-blue-600 hover:underline">
                                                         {{ $item->product->name }}
                                                     </a>
@@ -189,7 +189,7 @@
             </div>
 
             <div class="flex justify-end mt-6 space-x-2">
-                <a href="{{ route('admin.admin.orders.show', $order) }}"
+                <a href="{{ route('admin.orders.show', $order) }}"
                     class="px-4 py-2 text-gray-800 bg-gray-300 rounded dark:bg-gray-600 dark:text-white">Cancel</a>
                 <button type="submit" class="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700">Save
                     Changes</button>

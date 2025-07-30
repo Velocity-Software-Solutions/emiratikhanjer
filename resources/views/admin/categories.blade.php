@@ -48,7 +48,7 @@
 
 
                     <tr x-show="showNewRow || showError" class="bg-gray-50 dark:bg-gray-900">
-                        <form action="{{ route('admin.admin.categories.store') }}" method="POST"
+                        <form action="{{ route('admin.categories.store') }}" method="POST"
                             class="flex items-center w-full">
                             @csrf
                             <td class="px-5 py-2 text-gray-700 dark:text-white">New</td>
@@ -86,7 +86,7 @@
 
                     {{-- Existing Categories --}}
                     @foreach ($categories as $category)
-                        <form action="{{ route('admin.admin.categories.update', $category->id) }}" method="POST">
+                        <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <tr>
@@ -118,7 +118,7 @@
                                         </svg>
                                     </button>
                         </form>
-                        <form action="{{ route('admin.admin.categories.destroy', $category->id) }}" method="POST"
+                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST"
                             onsubmit="return confirm('Are you sure you want to delete this category?');">
                             @csrf
                             @method('DELETE')

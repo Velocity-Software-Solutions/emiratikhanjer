@@ -13,19 +13,29 @@
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach ($groupedProducts as $product)
                     <div class="overflow-hidden transition bg-white rounded-lg shadow-md hover:shadow-lg">
-                        {{-- Product Image --}}
                         @if ($product->images->count())
-                            <div class="w-full h-[515px] overflow-hidden rounded-t-md relative">
-                                <img 
-                                    src="{{ asset('storage/' . $product->images->first()->image_path) }}" 
-                                    alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover cursor-zoom-in transition duration-200 hover:opacity-90"
-                                    @click="showModal = true; modalImage = '{{ asset('storage/' . $product->images->first()->image_path) }}'"
-                                />
+                            <div x-data="{ current: 0 }" class="relative w-full h-[515px] overflow-hidden rounded-t-md">
+                                <template x-for="(img, index) in {{ $product->images->take(3)->toJson() }}" :key="index">
+                                    <img
+                                        x-show="current === index"
+                                        x-transition
+                                        :src="'/storage/' + img.image_path"
+                                        @click="$dispatch('open-modal', { src: '/storage/' + img.image_path })"
+                                        class="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
+                                        alt="{{ $product->name }}"
+                                    >
+                                </template>
+
+                                <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
+                                    <template x-for="(img, index) in {{ $product->images->take(3)->toJson() }}" :key="index">
+                                        <button @click="current = index"
+                                            :class="{ 'bg-yellow-600': current === index, 'bg-gray-300': current !== index }"
+                                            class="w-3 h-3 rounded-full"></button>
+                                    </template>
+                                </div>
                             </div>
                         @endif
 
-                        {{-- Product Info --}}
                         <div class="p-4">
                             <h3 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h3>
                             <p class="mt-1 text-gray-600">{{ Str::limit($product->description, 80) }}</p>
@@ -34,7 +44,7 @@
                                     AED {{ number_format($product->price, 2) }}
                                 </span>
                                 <a href="{{ route('products.show', $product->id) }}"
-                                   class="inline-block px-3 py-1 text-white transition bg-blue-600 rounded hover:bg-blue-700">
+                                    class="inline-block px-3 py-1 text-white transition bg-blue-600 rounded hover:bg-blue-700">
                                     View
                                 </a>
                             </div>
@@ -47,12 +57,12 @@
 
     {{-- Zoom Modal --}}
     <div 
-        class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
-        x-show="showModal"
-        x-transition
-        @click.away="showModal = false"
-        @keydown.escape.window="showModal = false"
+        x-show="showModal" 
+        x-transition 
         x-cloak
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4"
+        @click.away="showModal = false" 
+        @keydown.escape.window="showModal = false"
     >
         <div class="relative max-w-full max-h-screen">
             <button 
@@ -65,4 +75,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('carousel', (images) => ({
+            current: 0,
+            images,
+            next() { this.current = (this.current + 1) % this.images.length },
+            prev() { this.current = (this.current - 1 + this.images.length) % this.images.length }
+        }))
+    });
+</script>
 @endsection

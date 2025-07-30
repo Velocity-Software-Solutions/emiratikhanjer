@@ -6,7 +6,7 @@
 <div class="p-6 mx-2 h-full bg-white dark:bg-gray-800 rounded-lg shadow">
   <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">📦 Products</h2>
 <div class="flex justify-end mb-4">
-    <a href="{{ route('admin.admin.products.create') }}"
+    <a href="{{ route('admin.products.create') }}"
        class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
         + Add New Product
     </a>
@@ -53,8 +53,8 @@
           <td class="px-4 py-2">{{ $product->category->name ?? '—' }}</td>
           <td class="px-4 py-2">{{ $product->tags ?? '—' }}</td>
           <td class="px-4 py-2 flex space-x-2">
-            <a href="{{ route('admin.admin.products.edit', $product->id) }}" class="text-blue-600 hover:underline">Edit</a>
-            <form action="{{ route('admin.admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Delete this product?');">
+            <a href="{{ route('admin.products.edit', $product->id) }}" class="text-blue-600 hover:underline">Edit</a>
+            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Delete this product?');">
               @csrf
               @method('DELETE')
               <button type="submit" class="text-red-600 hover:underline">Delete</button>

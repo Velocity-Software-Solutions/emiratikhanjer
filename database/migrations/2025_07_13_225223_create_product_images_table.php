@@ -17,7 +17,7 @@ return new class extends Migration
     $table->id();
     $table->foreignId('product_id')->constrained()->onDelete('cascade');
     $table->string('image_path');
-    $table->tinyText('thumbail');
+    $table->boolean('thumbnail')->default(0);
     $table->string('alt_text')->nullable();
     $table->timestamps(); 
 });
