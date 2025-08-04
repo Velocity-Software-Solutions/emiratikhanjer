@@ -20,7 +20,7 @@
                                         <img x-show="current === index" x-transition :src="'/storage/' + img.image_path"
                                             @click="showModal = true; modalImage = '/storage/' + img.image_path"
                                             {{-- @click="$dispatch('open-modal', { src: '/storage/' + img.image_path })" --}}
-                                            class="absolute inset-0 w-full h-full object-cover cursor-zoom-in"
+                                            class="absolute inset-0 w-full h-full object-contain cursor-zoom-in"
                                             alt="{{ $product->name }}">
                                     </template>
 

@@ -66,8 +66,7 @@
                             {{-- Cities Multi Select --}}
                             <td class="px-4 py-2 min-w-28">
                                 <template x-if="country">
-                                    <x-multi-select name="cities" x-bind:options="citiesOptions"
-                                        :old-values="old('cities' ?? [])" />
+                                    <x-multi-select name="cities" x-bind:options="citiesOptions" :old-values="old('cities' ?? [])" />
                                 </template>
                             </td>
 
@@ -186,13 +185,12 @@
                 selected: [],
                 filtered: [],
                 allOptions: options,
-                name: fieldName,
+                name: fieldName + '[]',
 
                 init() {
-                    console.log(this.allOptions)
                     this.selected = Array.from(new Set(initial.map(id => String(id))));
                     this.filtered = this.allOptions;
-
+                    window.multiSelectValues[this.name.replace('[]', '')] = this.selected.map(Number);
                 },
 
                 toggle(id) {
@@ -202,13 +200,12 @@
                     } else {
                         this.selected.push(id);
                     }
-                    console.log(this.selected);
-
+                    window.multiSelectValues[this.name.replace('[]', '')] = this.selected.map(Number);
                 },
 
                 remove(id) {
                     this.selected = this.selected.filter(i => i !== String(id));
-
+                    window.multiSelectValues[this.name.replace('[]', '')] = this.selected.map(Number);
                 },
 
                 filter() {
@@ -223,13 +220,12 @@
                     const item = this.allOptions.find(opt => String(opt.id) === id);
                     return item ? item.name : '';
                 },
+
                 updateOptions(newOptions) {
                     this.allOptions = newOptions;
                     this.selected = this.selected.filter(id => this.allOptions.some(opt => opt.id === id));
                     this.filter();
                 }
-
-
             };
         }
 

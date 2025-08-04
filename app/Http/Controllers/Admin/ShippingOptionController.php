@@ -28,8 +28,8 @@ class ShippingOptionController extends Controller
             'delivery_time' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'country' => 'required|string|max:100',
-            'cities' => 'nullable|array|min:1',
-        'cities.*' => 'nullable|string|max:2000',
+            'cities' => 'required|array|min:1',
+        'cities.*' => 'required|string|max:2000',
         ]);
 
         ShippingOptions::create($validated);
@@ -41,7 +41,6 @@ class ShippingOptionController extends Controller
      */
     public function update(Request $request, ShippingOptions $shippingOption)
     {
-        dd($request->all());die();
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
