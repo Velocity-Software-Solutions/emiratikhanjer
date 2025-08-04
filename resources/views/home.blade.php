@@ -25,7 +25,7 @@
                                     </template>
 
                                     <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
-                                        <template x-for="(img, index) in {{ $product->images->take(5)->toJson() }}"
+                                        <template x-for="(img, index) in {{ $product->images->take(3)->toJson() }}"
                                             :key="index">
                                             <button @click="current = index"
                                                 :class="{ 'bg-yellow-600': current === index, 'bg-gray-300': current !== index }"
