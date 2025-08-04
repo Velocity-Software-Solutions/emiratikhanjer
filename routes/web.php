@@ -43,7 +43,7 @@ Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('chec
       return view('welcome');
   });
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 
