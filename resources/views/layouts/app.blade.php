@@ -12,7 +12,7 @@
 <body class="text-gray-900 bg-gray-50">
     <header class="sticky top-0 z-50 bg-white shadow">
         <div class="flex items-center justify-between px-4 py-4 mx-auto max-w-7xl">
-            <a href="/" class="text-2xl font-bold text-bg-700 bg-\[\#4b3621\]"><img src="{{ asset('storage/images/logo.png') }}" alt="Antiques Shop" class=" rounded-full w-[70px] h-[70px] mb-4"></a>
+            <a href="/" class="text-2xl font-bold text-bg-700 bg-\[\#4b3621\]"><img src="{{ asset('images/logo.png') }}" alt="Antiques Shop" class=" rounded-full w-[70px] h-[70px] mb-4"></a>
 
             <nav class="space-x-6">
                 <a href="/" class=" nav-item text-gray-700 hover:text-blue-600">Home</a>

@@ -129,7 +129,7 @@
 </style>
 <body class="w-full h-full">
     <header class="nav my-3 fade-up-nav">
-        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="nav-img">
+        <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="nav-img">
         <ul class="flex justify-center align-items-center">
             <li class="nav-item nav-item-store text-xl active"><a href="#" class="nav-link active" aria-current="page">Home</a>
             </li>
