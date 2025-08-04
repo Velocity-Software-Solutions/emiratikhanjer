@@ -13,10 +13,11 @@ class Product extends Model
         'stock_quantity', 'condition', 'status', 'category_id'
     ];
 
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
-    }
+public function images()
+{
+    return $this->hasMany(ProductImage::class)->orderByDesc('thumbnail');
+}
+
 
     public function category()
 {
