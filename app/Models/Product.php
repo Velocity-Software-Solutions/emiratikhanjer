@@ -18,6 +18,11 @@ public function images()
     return $this->hasMany(ProductImage::class)->orderByDesc('thumbnail');
 }
 
+public function thumbnail()
+{
+    return $this->hasMany(ProductImage::class)->orderByDesc('thumbnail')->first();
+}
+
 
     public function category()
 {

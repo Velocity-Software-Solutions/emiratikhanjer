@@ -6,17 +6,17 @@
                     <div class="flex gap-4">
                        <a href="{{ route('admin.orders.index') }}" class="w-full">
                             <span
-                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-symbols-outlined dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
+                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-icons dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
                                 receipt_long</span>
                         </a>
                        <a href="{{ route('admin.products.index') }}" class="w-full">
                             <span
-                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-symbols-outlined dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
+                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-icons dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
                                 shopping_bag</span>
                         </a>
                                                <a href="{{ route('admin.categories.index') }}" class="w-full">
                             <span
-                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-symbols-outlined dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
+                                class="p-2 text-gray-400 transition duration-75 border-2 border-gray-400 border-solid rounded-full material-icons dark:border-gray-600 dark:text-gray-600 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white">
                                 category</span>
                         </a>
                     </div>

@@ -14,13 +14,13 @@
                     @foreach ($groupedProducts as $product)
                         <div class="overflow-hidden transition bg-white rounded-lg shadow-md hover:shadow-lg">
                             @if ($product->images->count())
-                                <div x-data="{ current: 0 }" class="relative w-full h-[515px] overflow-hidden rounded-t-md">
+                                <div x-data="{ current: 0 }"
+                                    class="relative flex justify-center items-center w-full h-[515px] overflow-hidden rounded-t-md p-2">
                                     <template x-for="(img, index) in {{ $product->images->take(3)->toJson() }}"
                                         :key="index">
                                         <img x-show="current === index" x-transition :src="'/storage/' + img.image_path"
                                             @click="showModal = true; modalImage = '/storage/' + img.image_path"
-                                            {{-- @click="$dispatch('open-modal', { src: '/storage/' + img.image_path })" --}}
-                                            class="absolute inset-0 w-full h-full object-contain cursor-zoom-in"
+                                            {{-- @click="$dispatch('open-modal', { src: '/storage/' + img.image_path })" --}} class="h-full object-contain cursor-zoom-in rounded-md"
                                             alt="{{ $product->name }}">
                                     </template>
 
@@ -60,9 +60,11 @@
             @click.away="showModal = false" @keydown.escape.window="showModal = false">
             <div class="relative max-w-full max-h-screen">
                 <button @click="showModal = false"
-                    class="absolute -top-4 -right-4 bg-white text-black text-2xl w-8 h-8 rounded-full shadow hover:bg-gray-100 z-50"
+                    class="absolute -top-4 -right-4 flex justify-center items-center bg-white text-black text-2xl w-8 h-8 rounded-full shadow hover:bg-gray-100 z-50"
                     aria-label="Close">
-                    &times;
+                    <span class="material-icons">
+                        close
+                    </span>
                 </button>
                 <img :src="modalImage" class="max-w-full max-h-[90vh] rounded shadow-xl">
             </div>

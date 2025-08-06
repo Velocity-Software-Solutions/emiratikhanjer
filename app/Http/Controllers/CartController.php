@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Coupon;
@@ -15,7 +16,8 @@ class CartController extends Controller
 
     public function add(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('images')->findOrFail($id);
+        $thumbnail = $product->images->first();
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
@@ -24,7 +26,7 @@ class CartController extends Controller
             $cart[$id] = [
                 "name" => $product->name,
                 "price" => $product->price,
-                "image" => $product->image,
+                "image_path" => $thumbnail->image_path,
                 "quantity" => 1,
             ];
         }

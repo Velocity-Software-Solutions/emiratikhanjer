@@ -35,7 +35,7 @@
                             @endphp
                             <tr class="border-t">
                                 <td class="flex items-center px-6 py-4 space-x-4">
-                                    <img src="{{ asset('storage/' . $item['image']) }}"
+                                    <img src="/storage/{{ $item['image_path'] }}"
                                         class="object-cover w-12 h-12 rounded" alt="">
                                     <span>{{ $item['name'] }}</span>
                                 </td>

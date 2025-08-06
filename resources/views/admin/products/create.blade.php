@@ -91,12 +91,60 @@
     </div>
 
     <!-- Images -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Images</label>
-      <input type="file" name="images[]" multiple class="w-full mt-1 text-gray-800 dark:text-white">
-      @error('images') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-    </div>
+            <div x-data="imagesUploader({
+                images: [],
+                initialThumbnailId: null
+            })" class="space-y-4">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Product Images</label>
 
+                <!-- Hidden file input -->
+                <input name="images[]" type="file" multiple x-ref="fileInput" @change="handleFiles($event.target.files)"
+                    class="hidden">
+
+                <!-- Hidden thumbnail field -->
+                <input type="hidden" name="thumbnail_id" :value="thumbnailId">
+
+                <!-- Upload area -->
+                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 p-6 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 transition text-center text-gray-600 dark:text-gray-300"
+                    @click="$refs.fileInput.click()" @dragover.prevent
+                    @drop.prevent="handleFiles($event.dataTransfer.files)">
+                    Click or drag files here to upload
+                </div>
+
+                <!-- Error -->
+                @error('images')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+
+                <!-- Image Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <template x-for="img in images" :key="img.id || img.tempId">
+                        <div class="relative group">
+                            <!-- Thumbnail selector -->
+                            <div class="absolute top-4 left-4 z-10">
+                                <input type="radio" :value="img.id || img.tempId" x-model="thumbnailId"
+                                    @change="setThumbnail(img)" class="form-radio text-blue-500 focus:ring-blue-400"
+                                    title="Set as thumbnail">
+                            </div>
+
+                            <!-- Image -->
+                            <img :src="img.preview || ('/storage/' + img.image_path)"
+                                class="w-full h-40 object-cover rounded-lg transition-transform duration-300 group-hover:scale-95"
+                                alt="Image">
+
+                            <!-- Delete button -->
+                            <button @click.stop="deleteImage(img)"
+                                class="flex justify-center items-center absolute top-4 right-4 hover:bg-red-300 text-white p-1 rounded-full shadow duration-300"
+                                title="Delete">
+                                <span
+                                    class="transition duration-75 material-symbols-outlined text-red-400 group-hover:text-red-600">
+                                    delete
+                                </span>
+                            </button>
+                        </div>
+                    </template>
+                </div>
+            </div>
     <!-- Status -->
     <div class="flex items-center">
       <label class="mr-4 text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
@@ -112,4 +160,79 @@
     </div>
   </form>
 </div>
+    <script>
+        function imagesUploader({
+            images = [],
+            initialThumbnailId = null
+        }) {
+            return {
+                images: [...images],
+                thumbnailId: initialThumbnailId,
+
+                handleFiles(fileList) {
+                    for (const file of fileList) {
+                        const reader = new FileReader();
+                        const tempId = `temp_${this.images.length}`;
+
+                        reader.onload = (e) => {
+                            this.images.push({
+                                file,
+                                preview: e.target.result,
+                                tempId,
+                                isThumbnail: false
+                            });
+
+                            // Set first new uploaded image as thumbnail if none selected
+                            if (!this.thumbnailId) {
+                                this.thumbnailId = tempId;
+                            }
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
+                },
+
+                async deleteImage(img) {
+                    if (img.preview) {
+                        this.images = this.images.filter(i => i !== img);
+                        if (this.thumbnailId === img.tempId) {
+                            this.thumbnailId = null;
+                        }
+                        return;
+                    }
+
+                    if (!confirm('Are you sure you want to delete this image?')) return;
+
+                    try {
+                        const response = await axios.post('{{ route('admin.product.image.delete') }}', {
+                            id: img.id
+                        }, {
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        });
+
+                        if (response.data.status === 'success') {
+                            this.images = this.images.filter(i => i.id !== img.id);
+                            if (this.thumbnailId === img.id) {
+                                this.thumbnailId = null;
+                            }
+                        } else {
+                            alert('Failed to delete image');
+                        }
+                    } catch (error) {
+                        console.error(error);
+                        alert('Error deleting image.');
+                    }
+                },
+                setThumbnail(selectedImg) {
+                    this.thumbnailId = selectedImg.id || selectedImg.tempId;
+                    this.images.forEach(img => {
+                        img.isThumbnail = (img === selectedImg);
+                    });
+                }
+
+            }
+        }
+    </script>
 @endsection
