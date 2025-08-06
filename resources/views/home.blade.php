@@ -12,7 +12,7 @@
 
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($groupedProducts as $product)
-                        <div class="overflow-hidden transition bg-white rounded-lg shadow-md hover:shadow-2xl fade-up ">
+                        <div class="overflow-hidden transition bg-white rounded-lg shadow-md hover:shadow-2xl fade-up duration-200">
                             @if ($product->images->count())
                                 <div x-data="{ current: 0 }"
                                     class="relative flex justify-center items-center w-full h-[515px] overflow-hidden rounded-t-md p-2">
