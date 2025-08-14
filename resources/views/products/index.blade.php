@@ -17,14 +17,14 @@
                 
 
                 <div class="mb-6 text-2xl font-semibold text-blue-600">
-                    AED {{ number_format($product->price, 2) }}
+                    {{ __('messages.currency_aed') }} {{ number_format($product->price, 2) }}
                 </div>
 
                 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex items-center space-x-4">
                     @csrf
                     <button type="submit"
                         class="px-6 py-2 text-white transition-all duration-300 bg-blue-600 rounded-lg hover:bg-blue-700">
-                        Add to Cart
+                        {{ __('messages.add_to_cart') }}
                     </button>
                 </form>
             </div>
