@@ -152,7 +152,7 @@
 
         <div class="input-container">
             <label for="text-area" class="form-label text-xl">{{ __('home.message') }}</label>
-            <textarea name="message" id="message" rows="4" class="input block text-base" id="text-area"></textarea>
+            <textarea name="message" id="message" rows="4" class="block text-base" id="text-area"></textarea>
         </div>
 
         <button class="contact-button" type="submit">{{ __('home.submit') }}</button>

@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->decimal('price', 8, 2);
             $table->string('delivery_time');
             $table->text('description')->nullable();
-            $table->string('region');
+            $table->string('region')->nullable();
             $table->string('country')->nullable()->index();
             $table->string('city')->nullable()->index();
             $table->timestamps();
