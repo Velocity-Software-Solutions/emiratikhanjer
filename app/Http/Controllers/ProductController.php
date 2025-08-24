@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::with('images')->findOrFail($id);
-        $smiliarProducts = Product::where('category_id', $product->category_id)->whereKeyNot($product->getKey())->with('images')->limit(5)->get();
+        $smiliarProducts = Product::where('category_id', $product->category_id)->whereKeyNot($product->getKey())->with('images')->limit(4)->get();
         return view('products.show', compact('product', 'smiliarProducts'));
     }
 }
