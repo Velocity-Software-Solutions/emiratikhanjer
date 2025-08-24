@@ -41,10 +41,8 @@ Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('chec
 
 });
     Route::get('/checkout', [CheckoutController::class, 'index'])->name(name: 'checkout.index');
- Route::get('/home', [StoreController::class, 'home'])->name('home');
-  Route::get('/', function(){
-      return view('welcome');
-  });
+ Route::get('/', [StoreController::class, 'home'])->name('home');
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
