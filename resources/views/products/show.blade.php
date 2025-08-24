@@ -43,14 +43,14 @@
             </div>
 
             <div>
-                <h1 class="mb-2 text-3xl font-bold text-gray-800">{{ $product->name }}</h1>
+                <h1 class="mb-2 text-3xl font-bold text-gray-800">{{ app()->getLocale() === 'ar' && $product->name_ar ? $product->name_ar : $product->name }}</h1>
                 <p class="mb-4 text-lg text-gray-600">
                     {{ __('product.currency_aed') }} {{ number_format($product->price, 2) }}
                 </p>
 
                 @if ($product->description)
                     <h2 class="mb-2 text-3xl font-bold text-gray-800">{{ __('product.description') }}</h2>
-                    <p class="min-h-[2rem] w-full text-sm">{{ $product->description }}</p>
+                    <p class="min-h-[2rem] w-full text-sm">{{ app()->getLocale() === 'ar' && $product->description_ar ? $product->description_ar : $product->description }}</p>
                 @endif
 
                 <form action="{{ route('cart.add', $product->id) }}" method="POST">
@@ -86,8 +86,8 @@
                     @endif
 
                     <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h3>
-                        <p class="mt-1 text-gray-600 w-min">{{ Str::limit($product->description, 80) }}</p>
+                        <h3 class="text-lg font-semibold text-gray-800">{{ app()->getLocale() === 'ar' && $product->name_ar ? $product->name_ar : $product->name }}</h3>
+                        <p class="mt-1 text-gray-600 w-min"{{ Str::limit( app()->getLocale() === 'ar' && $product->description_ar ? $product->description_ar : $product->description, 80) }}</p>
                         <div class="flex items-center justify-between mt-2">
                             <span class="text-xl font-bold text-blue-600">
                                 {{ __('product.currency_aed') }} {{ number_format($product->price, 2) }}

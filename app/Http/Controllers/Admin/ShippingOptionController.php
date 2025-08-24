@@ -13,7 +13,7 @@ class ShippingOptionController extends Controller
      */
     public function index()
     {
-        $shippingOptions = ShippingOptions::latest()->paginate(10);
+        $shippingOptions = ShippingOptions::where('status', 1)->latest()->paginate(10);
         return view('admin.shipping-options', compact('shippingOptions'));
     }
 
@@ -24,12 +24,13 @@ class ShippingOptionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
             'delivery_time' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'country' => 'required|string|max:100',
             'cities' => 'required|array|min:1',
-        'cities.*' => 'required|string|max:2000',
+            'cities.*' => 'required|string|max:2000',
         ]);
 
         ShippingOptions::create($validated);
@@ -43,12 +44,13 @@ class ShippingOptionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
             'delivery_time' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'country' => 'required|string|max:100',
             'cities' => 'required|array|min:1',
-        'cities.*' => 'required|string|max:2000',
+            'cities.*' => 'required|string|max:2000',
         ]);
 
 
@@ -61,7 +63,9 @@ class ShippingOptionController extends Controller
      */
     public function destroy(ShippingOptions $shippingOption)
     {
-        $shippingOption->delete();
+        $shippingOption->status = 0;
+
+        $shippingOption->save();
         return redirect()->back()->with('success', 'Shipping option deleted.');
     }
 }

@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->latest()->paginate(10); // or ->get()
+        $products = Product::where('status', 1)->with('category')->latest()->paginate(10); // or ->get()
 
         return view('admin.products.index', compact('products'));
     }
@@ -31,9 +31,11 @@ class ProductController extends Controller
         // Validate & store product
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'slug' => 'required|string|unique:products,slug',
             'sku' => 'required|string|unique:products,sku',
             'description' => 'nullable|string',
+            'description_ar' => 'nullable|string',
             'price' => 'required|numeric',
             'discount_price' => 'nullable|numeric',
             'stock_quantity' => 'required|integer|min:0',
@@ -79,9 +81,11 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'slug' => 'required|string|unique:products,slug,' . $product->id,
             'sku' => 'required|string|unique:products,sku,' . $product->id,
             'description' => 'nullable|string',
+            'description_ar' => 'nullable|string',
             'price' => 'required|numeric',
             'discount_price' => 'nullable|numeric',
             'stock_quantity' => 'required|integer|min:0',
@@ -120,7 +124,7 @@ class ProductController extends Controller
             // Now update thumbnail
 
         }
-                $product->images()->update(['thumbnail' => 0]); // Reset all
+        $product->images()->update(['thumbnail' => 0]); // Reset all
 
         if ($request->thumbnail_id) {
             $thumbnailId = $request->thumbnail_id;
@@ -145,7 +149,9 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        $product->delete();
+        $product->status = 0;
+        $product->save();
+
         return redirect()->route('admin.products.index')->with('success', 'Product deleted.');
     }
 

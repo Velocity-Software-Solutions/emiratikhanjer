@@ -19,13 +19,8 @@
   width: 90%;
   height: 60px;
   justify-self: center;
-  border-radius: 10px;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  left: 50%;
-  top: 5%;
-  z-index: 10;
 }
 
 .nav-img {
@@ -47,7 +42,7 @@
 .nav-item.active {
   margin: 0px;
   color: #4b3621;
-  border-bottom: 2px solid #4b3621;
+  border-bottom: 1px solid #b6824e;
 }
 
 .nav-item:hover {

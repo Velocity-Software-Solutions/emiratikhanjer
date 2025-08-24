@@ -64,3 +64,13 @@ const observer = new IntersectionObserver((entries, observer) => {
   document.querySelectorAll('[class*="fade-"]').forEach(el => {
     observer.observe(el);
   });
+
+      const currentUrl = window.location.pathname; // just the path, e.g. "/about"
+    const links = document.querySelectorAll("a");
+
+    links.forEach(link => {
+        // Compare the link's pathname with the current path
+        if (link.pathname === currentUrl) {
+            link.classList.add("active");
+        }
+    });

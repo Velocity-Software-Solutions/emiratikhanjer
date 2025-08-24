@@ -8,25 +8,35 @@ use App\Models\Category;
 
 class Product extends Model
 {
-  protected $fillable = [
-        'name', 'slug', 'sku', 'description', 'price', 'discount_price',
-        'stock_quantity', 'condition', 'status', 'category_id'
+    protected $fillable = [
+        'name',
+        'name_ar',
+        'slug',
+        'sku',
+        'description',
+        'description_ar',
+        'price',
+        'discount_price',
+        'stock_quantity',
+        'condition',
+        'status',
+        'category_id'
     ];
 
-public function images()
-{
-    return $this->hasMany(ProductImage::class)->orderByDesc('thumbnail');
-}
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class)->orderByDesc('thumbnail');
+    }
 
-public function thumbnail()
-{
-    return $this->hasMany(ProductImage::class)->orderByDesc('thumbnail')->first();
-}
+    public function thumbnail()
+    {
+        return $this->hasMany(ProductImage::class)->orderByDesc('thumbnail')->first();
+    }
 
 
     public function category()
-{
-    return $this->belongsTo(Category::class);
-}
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

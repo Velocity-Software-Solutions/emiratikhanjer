@@ -24,6 +24,18 @@
                 @enderror
             </div>
 
+            <!-- Product Name In Arabic -->
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Product Name In Arabic (optional)</label>
+                <input type="text" name="name_ar" value="{{ old('name_ar', $product->name_ar) }}"
+                    class="w-full mt-1 p-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
+                    value="{{ old('name_ar') }}">
+                @error('name_ar')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
             <!-- SLUG -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">SLUG</label>
@@ -50,6 +62,16 @@
                 <textarea name="description" rows="4"
                     class="w-full mt-1 p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white">{{ old('description', $product->description) }}</textarea>
                 @error('description')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Description Arabic -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Arabic Description (optional)</label>
+                <textarea name="description_ar" rows="4"
+                    class="w-full mt-1 p-2 border rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white">{{ old('description_ar', $product->description_ar) }}</textarea>
+                @error('description_ar')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
