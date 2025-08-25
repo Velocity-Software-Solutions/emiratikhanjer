@@ -13,22 +13,21 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="text-gray-900 bg-gray-50">
-    <header class="sticky top-0 z-50 bg-white shadow">
+<body class="text-gray-900 bg-[#f9f2e9]">
+    <header class="top-0 z-50 shadow">
         <div class="flex items-center justify-between px-[10%] py-4 mx-auto max-w-7xl">
             <div class="flex justify-center items-center gap-8">
                 <a href="/" class="text-2xl font-bold text-bg-700 bg-\[\#4b3621\]">
                     <img src="{{ asset('images/logo.png') }}" alt="{{ __('messages.logo_alt') }}"
-                        class="rounded-full w-[70px] h-[70px] mb-4">
+                        class="rounded-full w-[70px] h-[70px] mb-4 object-bottom">
 
                 </a>
-                <a href="/" class="nav-item text-gray-700 hover:text-gray-800">{{ __('messages.nav_home') }}</a>
-                <a href="{{ route('home') }}"
-                    class="nav-item text-gray-700 hover:text-gray-800">{{ __('messages.nav_shop') }}</a>
             </div>
 
 
             <nav class="gap-6 flex items-center">
+                <a href="/" class="nav-item text-gray-700 hover:text-gray-800"><span class="text-2xl material-icons">home</span></a>
+
                 <a href="{{ route('cart.index') }}" class="nav-item text-gray-700 hover:text-gray-800"
                     style="vertical-align: sub;">
                     <span class="text-2xl material-icons">shopping_cart</span>

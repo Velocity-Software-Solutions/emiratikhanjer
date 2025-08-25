@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen py-3 bg-gray-50">
+<div class="min-h-screen py-3">
     <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 place-items-center">
             {{-- Carousel --}}
@@ -35,7 +35,7 @@
                     <template x-for="(img, i) in images" :key="i">
                         <button @click="go(i)"
                                 class="w-2.5 h-2.5 rounded-full transition"
-                                :class="i === index ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'"
+                                :class="i === index ? 'bg-yellow-600' : 'bg-gray-300'"
                                 :aria-label="`{{ __('product.go_to_slide') }} ${i+1}`">
                         </button>
                     </template>
@@ -43,7 +43,7 @@
             </div>
 
             <div>
-                <h1 class="mb-2 text-3xl font-bold text-gray-800">{{ app()->getLocale() === 'ar' && $product->name_ar ? $product->name_ar : $product->name }}</h1>
+                <h1 class="mb-2 text-3xl montaga-semibold text-gray-800">{{ app()->getLocale() === 'ar' && $product->name_ar ? $product->name_ar : $product->name }}</h1>
                 <p class="mb-4 text-lg text-gray-600">
                     {{ __('product.currency_aed') }} {{ number_format($product->price, 2) }}
                 </p>
@@ -60,10 +60,10 @@
                             {{ __('product.quantity') }}
                         </label>
                         <input type="number" name="quantity" id="quantity" value="1" min="1"
-                               class="block w-24 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                               class="block w-24 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500">
                     </div>
                     <button type="submit"
-                            class="px-6 py-2 text-white transition bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-4">
+                            class="px-6 py-2 text-white transition bg-yellow-600 rounded-lg hover:bg-yellow-700 flex items-center justify-center gap-4">
                         <span class="material-icons">add_shopping_cart</span>
                         {{ __('product.add_to_cart') }}
                     </button>
@@ -89,11 +89,11 @@
                         <h3 class="text-lg font-semibold text-gray-800">{{ app()->getLocale() === 'ar' && $product->name_ar ? $product->name_ar : $product->name }}</h3>
                         <p class="mt-1 text-gray-600 w-min"{{ Str::limit( app()->getLocale() === 'ar' && $product->description_ar ? $product->description_ar : $product->description, 80) }}</p>
                         <div class="flex items-center justify-between mt-2">
-                            <span class="text-xl font-bold text-blue-600">
+                            <span class="text-xl font-bold text-yellow-600">
                                 {{ __('product.currency_aed') }} {{ number_format($product->price, 2) }}
                             </span>
                             <a href="{{ route('products.show', $product->id) }}"
-                               class="inline-block px-3 py-1 text-white transition bg-blue-600 rounded hover:bg-blue-700">
+                               class="inline-block px-3 py-1 text-white transition bg-yellow-600 rounded hover:bg-yellow-700">
                                 {{ __('product.view') }}
                             </a>
                         </div>

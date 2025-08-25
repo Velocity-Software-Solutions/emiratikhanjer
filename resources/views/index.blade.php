@@ -3,7 +3,7 @@
 @section('content')
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <div x-data="{ showModal: false, modalImage: '' }" class="min-h-screen py-12 bg-gray-50">
+    <div x-data="{ showModal: false, modalImage: '' }" class="min-h-screen py-12 bg-[#f9f2e9]">
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 fade-up">
             <h2 class="mb-8 montaga-regular text-4xl sm:text-5xl font-bold text-yellow-800">
                 {{ __('shop.featured_products') }}
@@ -11,22 +11,22 @@
 
             @foreach ($products as $category => $groupedProducts)
                 {{-- If you localize categories, replace $category with a localized value (see note below) --}}
-                <h3 class="mt-10 mb-6 text-3xl font-semibold text-gray-700 border-b pb-2">
+                <h3 class="mt-10 mb-6 text-3xl montaga-semibold text-gray-700 border-b pb-2">
                     {{ $category }}
                 </h3>
 
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($groupedProducts as $product)
                         <div
-                            class="overflow-hidden !transition bg-white rounded-lg shadow-md !duration-500 hover:shadow-2xl fade-up">
+                            class="product-box px-2 py-5 !transition rounded-sm !duration-500 fade-up">
                             @if ($product->images->count())
                                 <div x-data="{ current: 0 }"
-                                    class="relative flex justify-center items-center w-full h-[515px] overflow-hidden rounded-t-md p-2">
+                                    class="relative flex justify-center items-center w-full h-[300px] overflow-hidden rounded-t-md p-2">
                                     <template x-for="(img, index) in {{ $product->images->take(3)->toJson() }}"
                                         :key="index">
                                         <img x-show="current === index" x-transition :src="'/storage/' + img.image_path"
                                             @click="showModal = true; modalImage = '/storage/' + img.image_path"
-                                            class="h-full object-contain cursor-zoom-in rounded-md"
+                                            class="h-full object-contain cursor-zoom-in rounded-md mix-blend-multiply"
                                             alt="{{ $product->name }}">
                                     </template>
 
@@ -48,11 +48,11 @@
                                     {{ Str::limit( app()->getLocale() === 'ar' && $product->description_ar ? $product->description_ar : $product->description, 80) }}
                                 </p>
                                 <div class="flex items-center justify-between mt-2">
-                                    <span class="text-xl font-bold text-blue-600">
+                                    <span class="text-xl font-bold text-yellow-600">
                                         {{ __('shop.currency_aed') }} {{ number_format($product->price, 2) }}
                                     </span>
                                     <a href="{{ route('products.show', $product->id) }}"
-                                        class="inline-block px-3 py-1 text-white transition bg-blue-600 rounded hover:bg-blue-700">
+                                        class="inline-block px-3 py-1 text-white transition bg-yellow-600 rounded hover:bg-yellow-700">
                                         {{ __('shop.view') }}
                                     </a>
                                 </div>
