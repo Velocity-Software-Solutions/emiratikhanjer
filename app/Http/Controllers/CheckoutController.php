@@ -190,9 +190,11 @@ class CheckoutController extends Controller
                 ->with('success', 'Order placed successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
-            dd($e->getMessage(), $e->getFile() . ':' . $e->getLine());
+            report($e);
+            return back()
+                ->withErrors(['server' => 'We couldn’t process your order due to a server error. Please try again.'])
+                ->withInput();
         }
-
     }
 
     public function confirmation(Order $order)
