@@ -14,9 +14,10 @@ return new class extends Migration {
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->on('users')->onDelete('cascade')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->on('users')->onDelete('cascade');
             $table->string('full_name')->index();
             $table->string('email')->index();
+            $table->string('phone_number');
             $table->string('order_number')->index();
             $table->decimal('total_amount');
             $table->enum('payment_status', ['unpaid', 'paid', 'pending', 'failed', 'refunded'])->default('pending');

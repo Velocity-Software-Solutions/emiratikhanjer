@@ -19,6 +19,7 @@ class Order extends Model
         'user_id',
         'email',
         'full_name',
+        'phone_number',
         'order_number',
         'total_amount',
         'payment_status',

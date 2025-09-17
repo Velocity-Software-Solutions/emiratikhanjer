@@ -21,8 +21,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->string('region')->nullable();
             $table->string('country')->nullable()->index();
-            $table->string('city')->nullable()->index();
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
