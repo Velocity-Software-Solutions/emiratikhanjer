@@ -1,6 +1,6 @@
 <aside :class="sidebarOpen ? 'block' : 'hidden'" class="fixed md:relative lg:relative w-[40%] md:w-[25%] min-h-[100%] bg-white p-2 pl-5 border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 overflow-scroll custom-scrollbar scrollbar-hide">
     <div class="flex flex-col items-center justify-center text-black dark:text-white">
-        <img src="{{ asset('storage/images/logo.png') }}" alt="Antiques Shop" class=" rounded-full w-[70px] h-[70px] mb-4">
+        <img src="{{ asset('images/logo.png') }}" alt="Antiques Shop" class=" rounded-full w-[70px] h-[70px] mb-4">
         <p class="text-xl font-semibold ">{{ auth()->user()->name }}</p>
         <p class="text-sm text-gray-700 dark:text-gray-300 font-regular"> {{ auth()->user()->email }}</p>
         <form method="POST" action="{{ route('logout') }}" class="w-full">

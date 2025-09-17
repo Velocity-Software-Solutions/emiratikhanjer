@@ -13,7 +13,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="text-gray-900 bg-[#f9f2e9]">
+<body class="text-gray-900 bg-[#f9f2e9] {{ app()->getLocale() === 'ar' ? 'text-right' : 'text-left' }}">
     <header class="top-0 z-50 shadow">
         <div class="flex items-center justify-between px-[10%] py-4 mx-auto max-w-7xl">
             <div class="flex justify-center items-center gap-8">
@@ -47,11 +47,6 @@
                         <button type="submit"
                             class="nav-item text-gray-700 hover:text-gray-800">{{ __('messages.nav_logout') }}</button>
                     </form>
-                @else
-                    <a href="{{ route('login') }}" class="nav-item text-gray-700 hover:text-gray-800">
-                        <span class="text-2xl material-icons">person</span>
-
-                    </a>
                 @endauth
             </nav>
         </div>

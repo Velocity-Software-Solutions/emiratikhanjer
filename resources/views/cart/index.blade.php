@@ -22,7 +22,7 @@
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white rounded-lg shadow">
                 <thead>
-                    <tr class="text-sm font-semibold text-left text-gray-700 bg-gray-100">
+                    <tr class="text-sm font-semibold text-left text-gray-700 bg-gray-100  {{ app()->getLocale() === 'ar' ? 'text-right' : 'text-left' }}">
                         <th class="px-6 py-4">{{ __('cart.th_product') }}</th>
                         <th class="px-6 py-4">{{ __('cart.th_price') }}</th>
                         <th class="px-6 py-4">{{ __('cart.th_quantity') }}</th>
@@ -39,7 +39,7 @@
                         @endphp
                         <tr class="border-t">
                             <td class="flex items-center px-6 py-4 space-x-4">
-                                <img src="/storage/{{ $item['image_path'] }}" class="object-cover w-12 h-12 rounded" alt="">
+                                <img src="/storage/{{ $item['image_path'] }}" class="object-contain w-12 h-12 rounded" alt="">
                                 <span>{{ $item['name'] }}</span>
                             </td>
                             <td class="px-6 py-4">{{ __('product.currency_aed') }} {{ number_format($item['price'], 2) }}</td>
