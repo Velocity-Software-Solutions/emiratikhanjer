@@ -28,8 +28,8 @@ Route::post('/cart/apply-coupon', [CartController::class, 'applyCoupon'])->name(
 Route::post('/coupon/apply', [CouponController::class, 'apply'])->name('coupon.apply');
 Route::post('/coupon/remove', [CouponController::class, 'remove'])->name('coupon.remove');
 
- Route::get('/checkout', [CheckoutController::class, 'show'])->name(name: 'checkout.index');
-    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout', [CheckoutController::class, 'show'])->name(name: 'checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
 Route::get('/order/confirmation/{order}', [CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
 Route::get('/checkout/{order}/receipt', [CheckoutController::class, 'downloadReceipt'])->name('checkout.receipt');
@@ -37,11 +37,15 @@ Route::get('/checkout/{order}/receipt', [CheckoutController::class, 'downloadRec
 Route::middleware(['guest'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'show'])->name(name: 'checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
-Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
+    Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout.show');
 
 });
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name(name: 'checkout.index');
- Route::get('/', [StoreController::class, 'home'])->name('home');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name(name: 'checkout.index');
+Route::get('/', [StoreController::class, 'home'])->name('home');
+Route::get('/about', function(){
+    return view('about');
+})->name('about');
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -55,4 +59,4 @@ Route::get('/lang/{locale}', function ($locale) {
     return redirect()->back();
 })->name('lang.switch');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

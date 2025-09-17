@@ -51,8 +51,9 @@
 }
 
 .about-text-container {
-    width: 40%;
+    width: 100%;
     color: #4b3621;
+    text-align: center;
 }
 
 .contact-container{
@@ -119,14 +120,14 @@
 </div>
 
 <div class="about-us-container">
-    <div class="about-us-imgs">
+    {{-- <div class="about-us-imgs">
         <h3 class="montaga-regular text-4xl text-center fade-up">{{ __('home.featured_khinjars') }}</h3>
         <div class="flex mt-10">
             <img src="{{ asset('images/khinjar-1.png') }}" alt="Logo" class="about-us-img fade-up hidden">
             <img src="{{ asset('images/khinjar-2.png') }}" alt="Logo" class="about-us-img fade-up hidden !delay-100">
             <img src="{{ asset('images/khinjar-3.png') }}" alt="Logo" class="about-us-img fade-up hidden !delay-200">
         </div>
-    </div>
+    </div> --}}
 
     <div class="about-text-container fade-up hidden">
         <h3 class="montaga-regular text-4xl">{{ __('home.about_us') }}</h3>

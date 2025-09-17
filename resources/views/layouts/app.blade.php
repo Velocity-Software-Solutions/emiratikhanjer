@@ -26,12 +26,15 @@
 
 
             <nav class="gap-6 flex items-center">
-                <a href="/" class="nav-item text-gray-700 hover:text-gray-800"><span class="text-2xl material-icons">home</span></a>
-
+                <a href="/" class="nav-item text-gray-700 hover:text-gray-800"><span
+                        class="text-2xl material-icons">home</span></a>
                 <a href="{{ route('cart.index') }}" class="nav-item text-gray-700 hover:text-gray-800"
                     style="vertical-align: sub;">
                     <span class="text-2xl material-icons">shopping_cart</span>
                 </a>
+                <a href="{{ route('about') }}"
+                    class="nav-item text-gray-700 hover:text-gray-800">{{ app()->getLocale() === 'ar' ? 'من نحن' : 'About Us' }}</a>
+
                 <form action="{{ route('lang.switch', app()->getLocale() === 'ar' ? 'en' : 'ar') }}" method="GET"
                     class="inline">
                     <button type="submit" class="nav-item text-gray-700 hover:text-gray-800">

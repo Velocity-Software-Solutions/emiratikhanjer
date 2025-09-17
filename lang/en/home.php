@@ -6,11 +6,11 @@ return [
 
     'featured_khinjars' => 'Featured Khinjars',
     'about_us' => 'About Us',
-    'about_us_text' => 'Al Khinjar Al Dhahbi is the UAE’s premier destination for authentic, handcrafted Emirati khinjars — the traditional Arabian dagger that symbolizes honor, heritage, and pride.
+    'about_us_text' => 'Emirati Khanjer Antiques is the UAE’s premier destination for authentic, handcrafted Emirati khinjars — the traditional Arabian dagger that symbolizes honor, heritage, and pride.
 
 Rooted in culture and crafted with precision, each piece in our collection reflects a deep respect for tradition and a passion for timeless design. We work closely with skilled artisans to bring you khinjars that are not only rare collectibles, but powerful expressions of Emirati identity.
 
-Whether you\'re a collector, a connoisseur, or someone seeking a meaningful gift, Al Khinjar Al Dhahbi invites you to explore a world where craftsmanship meets legacy.',
+Whether you\'re a collector, a connoisseur, or someone seeking a meaningful gift, Emirati Khanjer Antiques invites you to explore a world where craftsmanship meets legacy.',
 
     'contact_us' => 'Contact Us',
     'name' => 'Name',
