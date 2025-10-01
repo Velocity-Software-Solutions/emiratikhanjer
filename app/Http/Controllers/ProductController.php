@@ -14,9 +14,15 @@ class ProductController extends Controller
         return view('products.index', compact(var_name: 'products'));
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $product = Product::with('images')->findOrFail($id);
+        $product = Product::where('slug', $slug)->with(['images'])->first();
+        if (!$product) {
+            $product = Product::with(['images'])->find($slug);
+            if (!$product) {
+                abort(404);
+            }
+        }
         $smiliarProducts = Product::where('category_id', $product->category_id)->whereKeyNot($product->getKey())->with('images')->limit(4)->get();
         return view('products.show', compact('product', 'smiliarProducts'));
     }
