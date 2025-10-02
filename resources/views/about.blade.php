@@ -2,6 +2,11 @@
 
 @section('content')
 <!-- ================= HERO ================= -->
+<style>
+.hidden{
+    display: none;
+}
+</style>
 <section class="relative min-h-[72vh] grid place-items-center overflow-hidden rounded-b-3xl">
   <img src="{{ asset('images/hero-bg.jpg') }}" alt="Hero" class="absolute inset-0 w-full h-full object-cover" />
   <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/35"></div>
