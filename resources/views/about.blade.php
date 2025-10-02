@@ -30,25 +30,25 @@
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
     <div class="flex items-center gap-3 bg-white border border-black/10 rounded-xl px-4 py-3 shadow-sm">
       <div class="w-9 h-9 rounded-full grid place-items-center text-white bg-stone-800">
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M12 2l7 3v6c0 5-3.4 9.3-7 11-3.6-1.7-7-6-7-11V5l7-3z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true"><path d="M12 2l7 3v6c0 5-3.4 9.3-7 11-3.6-1.7-7-6-7-11V5l7-3z"/></svg>
       </div>
       <div class="text-stone-800 text-sm font-medium">{{ __('home.trust_authentic') }}</div>
     </div>
     <div class="flex items-center gap-3 bg-white border border-black/10 rounded-xl px-4 py-3 shadow-sm">
       <div class="w-9 h-9 rounded-full grid place-items-center text-white bg-stone-800">
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M2 21l9-9 3 3-9 9H2v-3zM14.7 3.3l6 6-2.8 2.8-6-6L14.7 3.3zM11 7l-2-2 2-2 2 2-2 2z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true"><path d="M2 21l9-9 3 3-9 9H2v-3zM14.7 3.3l6 6-2.8 2.8-6-6L14.7 3.3zM11 7l-2-2 2-2 2 2-2 2z"/></svg>
       </div>
       <div class="text-stone-800 text-sm font-medium">{{ __('home.trust_handcrafted') }}</div>
     </div>
     <div class="flex items-center gap-3 bg-white border border-black/10 rounded-xl px-4 py-3 shadow-sm">
       <div class="w-9 h-9 rounded-full grid place-items-center text-white bg-stone-800">
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M3 3h13v10h-1.5a3.5 3.5 0 00-3.45 3H7.95A3.5 3.5 0 004.5 13H3V3zm16 6l2 3v4h-1.55a3.5 3.5 0 00-3.45-3H16V9h3zM6 20a2 2 0 110-4 2 2 0 010 4z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true"><path d="M3 3h13v10h-1.5a3.5 3.5 0 00-3.45 3H7.95A3.5 3.5 0 004.5 13H3V3zm16 6l2 3v4h-1.55a3.5 3.5 0 00-3.45-3H16V9h3zM6 20a2 2 0 110-4 2 2 0 010 4z"/></svg>
       </div>
       <div class="text-stone-800 text-sm font-medium">{{ __('home.trust_fast_shipping') }}</div>
     </div>
     <div class="flex items-center gap-3 bg-white border border-black/10 rounded-xl px-4 py-3 shadow-sm">
       <div class="w-9 h-9 rounded-full grid place-items-center text-white bg-stone-800">
-        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current"><path d="M17 3H7a2 2 0 00-2 2v13l7-3 7 3V5a2 2 0 00-2-2z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true"><path d="M17 3H7a2 2 0 00-2 2v13l7-3 7 3V5a2 2 0 00-2-2z"/></svg>
       </div>
       <div class="text-stone-800 text-sm font-medium">{{ __('home.trust_certified') }}</div>
     </div>
@@ -77,7 +77,6 @@
           {{ __('home.about_us_text') }}
         </p>
 
-        <!-- Feature bullets -->
         <ul class="mt-6 space-y-3">
           <li class="flex items-start gap-3">
             <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-amber-600 text-white text-[10px]">✓</span>
@@ -93,7 +92,6 @@
           </li>
         </ul>
 
-        <!-- Stats -->
         <div class="mt-6 grid grid-cols-3 gap-3">
           <div class="rounded-xl border border-black/10 bg-white px-4 py-3 text-center">
             <div class="text-xl font-bold text-stone-900">100%</div>
@@ -109,7 +107,6 @@
           </div>
         </div>
 
-        <!-- CTA -->
         <div class="mt-7">
           <a href="{{ route('home') }}"
              class="inline-flex items-center justify-center px-5 py-2 rounded-full
@@ -202,6 +199,10 @@
       <h2 class="montaga-regular text-3xl text-stone-800 text-center">{{ __('home.contact_us') }}</h2>
 
       <form id="contactForm" class="mt-6 max-w-2xl mx-auto">
+        {{-- Honeypot fields --}}
+        <input type="text" name="_hp" value="" class="hidden" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="_hpt" id="hpt" value="">
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label for="name" class="block text-sm text-stone-700">{{ __('home.name') }}</label>
@@ -229,7 +230,7 @@
                   class="inline-flex items-center justify-center px-5 py-2 rounded-full
                          text-white font-medium bg-amber-700 hover:bg-amber-800
                          transition-transform duration-200 hover:-translate-y-0.5">
-            <svg id="spinner" class="hidden -ml-1 mr-2 h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none">
+            <svg id="spinner" class="hidden -ml-1 mr-2 h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
             </svg>
@@ -240,7 +241,7 @@
     </div>
   </div>
 
-  <!-- Toast -->
+  {{-- Toast --}}
   <div id="toast"
        class="fixed right-4 bottom-4 bg-black text-white px-4 py-3 rounded-xl shadow-lg
               opacity-0 translate-y-2 transition duration-200 pointer-events-none">
@@ -248,7 +249,13 @@
   </div>
 </section>
 
+{{-- Single, unified JS (no duplicates) --}}
 <script>
+(function initHoneypotTs(){
+  const hpt = document.getElementById('hpt');
+  if (hpt) hpt.value = Math.floor(Date.now() / 1000);
+})();
+
 const form = document.getElementById('contactForm');
 const btn  = document.getElementById('contactSubmit');
 const spin = document.getElementById('spinner');
@@ -271,25 +278,35 @@ form?.addEventListener('submit', async (e) => {
   spin.classList.remove('hidden');
   btn.setAttribute('disabled', 'true');
 
-  const data = {
+  const payload = {
     name:   form.name.value || '',
     email:  form.email.value || '',
     message:form.message.value || '',
+    _hp:    form._hp.value || '',
+    _hpt:   form._hpt.value || '',
   };
 
   try{
-    const res = await fetch('https://alkhinjaraldhahbiantiques.com/api/contact', {
+    const res = await fetch(@json(route('api.contact')), {
       method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify(data),
+      headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+      body: JSON.stringify(payload),
     });
+
     const json = await res.json().catch(()=>({}));
-    showToast(json?.message || @json(__('home.toast_success')), true);
-    form.reset();
-  }catch(err){
+
+    if (!res.ok) {
+      showToast(json?.message || @json(__('home.toast_error')), false);
+    } else {
+      showToast(json?.message || @json(__('home.toast_success')), true);
+      form.reset();
+      const hpt = document.getElementById('hpt');
+      if (hpt) hpt.value = Math.floor(Date.now() / 1000);
+    }
+  } catch(err){
     console.error(err);
     showToast(@json(__('home.toast_error')), false);
-  }finally{
+  } finally{
     spin.classList.add('hidden');
     btn.removeAttribute('disabled');
   }
